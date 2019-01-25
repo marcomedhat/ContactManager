@@ -49,6 +49,9 @@ class AddContact extends Component {
 			phone: "",
 			errors: {}
 		});
+
+		// to navigate back to home page after sumbit
+		this.props.history.push("/");
 	};
 
 	render() {

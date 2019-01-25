@@ -9,3 +9,6 @@ export default () => {
 		</div>
 	);
 };
+
+//<h1 className="display-4">{props.match.params.id}</h1>
+// to access the extension we put in the path
