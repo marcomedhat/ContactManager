@@ -10,6 +10,7 @@
 
 # production
 /build
+/components/test/Test.js
 
 # misc
 .DS_Store
