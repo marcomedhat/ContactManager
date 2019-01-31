@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Consumer } from "../../Context";
 import TextInputGroup from "../layout/TextInputGroup";
-import axios from 'axios';
+import axios from "axios";
 
 class AddContact extends Component {
 	state = {
@@ -38,11 +38,12 @@ class AddContact extends Component {
 			phone
 		};
 
-		const res = await axios
-			.post('https://jsonplaceholder.typicode.com/users', newContact);
+		const res = await axios.post(
+			"https://jsonplaceholder.typicode.com/users",
+			newContact
+		);
 
 		dispatch({ type: "ADD_CONTACT", payload: res.data });
-
 
 		//clear the fileds after submitting the form
 		this.setState({

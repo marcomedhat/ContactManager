@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Consumer } from "../../Context";
 import TextInputGroup from "../layout/TextInputGroup";
-import axios from 'axios';
+import axios from "axios";
 
 class EditContact extends Component {
 	state = {
@@ -12,14 +12,16 @@ class EditContact extends Component {
 	};
 
 	async componentDidMount() {
-		const {id} = this.props.match.params;
-		const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+		const { id } = this.props.match.params;
+		const res = await axios.get(
+			`https://jsonplaceholder.typicode.com/users/${id}`
+		);
 
 		const contact = res.data;
 
 		this.setState({
 			name: contact.name,
-			email:contact.email,
+			email: contact.email,
 			phone: contact.phone
 		});
 	}
@@ -45,6 +47,21 @@ class EditContact extends Component {
 			return;
 		}
 
+		const updContact = {
+			name,
+			email,
+			phone
+		};
+
+		const { id } = this.props.match.params;
+
+		const res = await axios.put(
+			`https://jsonplaceholder.typicode.com/users/${id}`,
+			updContact
+		);
+
+		dispatch({ type: "UPDATE_CONTACT", payload: res.data });
+
 		//clear the fileds after submitting the form
 		this.setState({
 			name: "",
@@ -54,7 +71,7 @@ class EditContact extends Component {
 		});
 
 		// to navigate back to home page after sumbit
-		this.props.history.push("/");	
+		this.props.history.push("/");
 	};
 
 	render() {
